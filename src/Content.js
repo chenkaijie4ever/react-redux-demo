@@ -1,38 +1,19 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import ThemeSwitch from './ThemeSwitch'
-
+import { connect } from './react-redux'
 class Content extends Component {
-
-    static contextTypes = {
-        store: PropTypes.object
-    }
-
-    constructor() {
-        super()
-        this.state = { themeColor: '' }
-    }
-
-    componentWillMount() {
-        const { store } = this.context
-        this._updateThemeColor()
-        store.subscribe(() => this._updateThemeColor())
-    }
-
-    _updateThemeColor() {
-        const { store } = this.context
-        const state = store.getState()
-        this.setState({ themeColor: state.themeColor })
-    }
 
     render() {
         return (
             <div>
-                <p style={{ color: this.state.themeColor }}>This is content.</p>
+                <p style={{ color: this.props.themeColor }}>This is content.</p>
                 <ThemeSwitch />
             </div>
         )
     }
 }
+
+Content = connect(Content)
 
 export default Content
