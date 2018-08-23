@@ -14,6 +14,11 @@ class Content extends Component {
     }
 }
 
-Content = connect(Content)
+const mapStateToProps = function (state) {
+    return {
+        themeColor: state.themeColor
+    }
+}
+Content = connect(mapStateToProps)(Content)
 
 export default Content
