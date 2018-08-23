@@ -2,7 +2,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-export const connect = function (mapStateToProps) {
+export const connect = function (mapStateToProps, mapDispatchToProps) {
 
     return function (WrappedComponent) {
 
@@ -24,10 +24,12 @@ export const connect = function (mapStateToProps) {
         
             _updateProps() {
                 const { store } = this.context
-                let stateProps = mapStateToProps ? mapStateToProps(store.getState(), this.props) : {}
+                let stateProps = mapStateToProps ? mapStateToProps(store.getState()) : {}
+                let dispatchProps = mapDispatchToProps ? mapDispatchToProps(store.dispatch) : {}
                 this.setState({
                     allProps: {
                         ...stateProps,
+                        ...dispatchProps,
                         ...this.props
                     }
                 })
