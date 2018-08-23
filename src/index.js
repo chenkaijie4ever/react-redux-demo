@@ -1,4 +1,18 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types'
+import Header from './Header'
+import Content from './Content'
 
-ReactDOM.render(<div>React-Redux</div>, document.getElementById('root'));
+class Index extends Component {
+    render() {
+        return (
+            <div>
+                <Header />
+                <Content />
+            </div>
+        )
+    }
+}
+
+ReactDOM.render(<Index />, document.getElementById('root'));
