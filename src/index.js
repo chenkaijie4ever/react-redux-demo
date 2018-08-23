@@ -5,17 +5,6 @@ import PropTypes from 'prop-types'
 import Header from './Header'
 import Content from './Content'
 
-class Index extends Component {
-    render() {
-        return (
-            <div>
-                <Header />
-                <Content />
-            </div>
-        )
-    }
-}
-
 const themeReducer = function (state, action) {
     if (!state) return {
         themeColor: 'red'
@@ -30,4 +19,26 @@ const themeReducer = function (state, action) {
 
 const store = createStore(themeReducer)
 
+class Index extends Component {
+
+    static childContextTypes = {
+        store: PropTypes.object
+    }
+
+    getChildContext() {
+        return { store }
+    }
+
+    render() {
+        return (
+            <div>
+                <Header />
+                <Content />
+            </div>
+        )
+    }
+}
+
 ReactDOM.render(<Index />, document.getElementById('root'));
+
+
